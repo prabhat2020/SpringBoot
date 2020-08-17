@@ -24,8 +24,7 @@ pipeline {
                 steps
                 {
         
-            sh "mvn sonar:sonar -Dsonar.projectKey=SpringBoot -Dsonar.host.url=http://52.143.7.186/sonarqube-1336430 -Dsonar.login=96579c2fb741c186faa0ed47b11a1fc738412e37"
-        
+            sh "mvn sonar:sonar -Dsonar.projectKey=SpringPipeline -Dsonar.host.url=http://52.143.7.186/sonarqube-1336430 -Dsonar.login=23e2ff1beac97da72a5edff2c7e3a72e33578244"
                 }
      }
 stage('Building our image') { 

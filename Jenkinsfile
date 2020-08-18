@@ -51,7 +51,7 @@ stage('Building our image') {
               {
                 sh("curl -LO https://storage.googleapis.com/kubernetes-release/release/\$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl")
                 sh("chmod +x ./kubectl")
-                sh("cat ./spring-1121.yaml | sed s/1.0.0/${BUILD_NUMBER}/g | ./kubectl create -f -")
+                sh("cat ./spring.yaml | sed s/1.0.0/${BUILD_NUMBER}/g | ./kubectl create -f -")
                 echo "Application started on port: HTTP_PORT (http)"
     }
        }

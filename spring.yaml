@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: raghav-1336430
+  name: prabhat-1121485
   labels:
-    app: springra
+    app: spring-1121485
 spec:
   replicas: 1
   selector:
        matchLabels:
-         app: springra
+         app: spring-1121485
   template:
     metadata:
-      name: springra
+      name: spring-1121485
       labels:
-        app: springra
+        app: spring-1121485
     spec:
       containers:
-      - name: springra
+      - name: spring-1121485
         image: raghavgeek/testing:10
         resources:
           limits:
@@ -27,17 +27,17 @@ spec:
             cpu: "0.25"
   selector:
     matchLabels:
-      app: springra
+      app: spring-1121485
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: springra
+  name: spring-1121485
 spec:
   selector:
-    app: springra
+    app: spring-1121485
   ports:
     - port: 8080
-  type: ClusterIP
+  type: LoadBalancer

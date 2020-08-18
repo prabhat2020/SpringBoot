@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prabhat-1121485
+  name: spring-1121485
   labels:
     app: spring-1121485
 spec:

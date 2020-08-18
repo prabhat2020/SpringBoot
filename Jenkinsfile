@@ -4,7 +4,7 @@ pipeline {
     maven 'Maven'
   }
   environment {
-   registry = "prabhat2020/testing1"
+   registry = "prabhat2020/testing4"
    registryCredential = "06216ef3-ad77-49a6-a37b-e2e91cd08bfb"
   }
   stages {

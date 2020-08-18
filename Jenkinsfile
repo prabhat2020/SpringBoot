@@ -3,20 +3,10 @@ pipeline {
   tools {
     maven 'Maven'
   }
-       environment {
-        // This can be nexus3 or nexus2
-        NEXUS_VERSION = "nexus3"
-        // This can be http or https
-        NEXUS_PROTOCOL = "http"
-        // Where your Nexus is running
-        NEXUS_URL = "52.143.7.186/nexuss-1336430"
-        // Repository where we will upload the artifact
-        NEXUS_REPOSITORY = "repository-example"
-        // Jenkins credential id to authenticate to Nexus OSS
-        NEXUS_CREDENTIAL_ID = "36f46d06-ecff-49e6-a230-0a2dfc1cbabc"
-        registry = "raghavgeek/maven"
-        registryCredential = "afd3e70c-71e8-4de3-8877-0bc4cdec3978"
-    }
+  environment {
+   registry = "raghavgeek/testing"
+   registryCredential = "8acfc31c-d902-463d-ad29-afdc446892df"
+  }
   stages {
     stage('Initialize'){
       steps{
@@ -34,12 +24,25 @@ pipeline {
                 steps
                 {
         
-            sh "mvn sonar:sonar -Dsonar.host.url=http://52.143.7.186/sonarqube-1336430 -Dsonar.login=75a228aaf0ecab50c27b819d260287d1058c87fa"
-        
+            sh "mvn sonar:sonar -Dsonar.projectKey=SpringPipeline -Dsonar.host.url=http://52.143.7.186/sonarqube-1336430 -Dsonar.login=23e2ff1beac97da72a5edff2c7e3a72e33578244"
                 }
      }
-stage("Build Docker Image"){
-		sh "docker build - < Dockerfile"
-	}
+stage('Building our image') { 
+             steps { 
+                    script {
+                 dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                    }
+                 } 
+
+     }
+      stage('Deploy our image') { 
+          steps { 
+                 script { 
+                  docker.withRegistry( '', registryCredential ) { 
+                  dockerImage.push() 
+                        }
+                   } 
+          }
+      }
   }
 }

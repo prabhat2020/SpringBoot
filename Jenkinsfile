@@ -45,7 +45,7 @@ stage('Building our image') {
           }
       }
          
-  }
+  
        stage('Deploy Application on K8s') {
               steps
               {
@@ -55,4 +55,5 @@ stage('Building our image') {
                 echo "Application started on port: HTTP_PORT (http)"
     }
        }
+}
 }

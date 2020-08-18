@@ -4,8 +4,8 @@ pipeline {
     maven 'Maven'
   }
   environment {
-   registry = "raghavgeek/testing"
-   registryCredential = "8acfc31c-d902-463d-ad29-afdc446892df"
+   registry = "prabhat2020/testing1"
+   registryCredential = "06216ef3-ad77-49a6-a37b-e2e91cd08bfb"
   }
   stages {
     stage('Initialize'){
@@ -24,7 +24,7 @@ pipeline {
                 steps
                 {
         
-            sh "mvn sonar:sonar -Dsonar.projectKey=SpringPipeline -Dsonar.host.url=http://52.143.7.186/sonarqube-1336430 -Dsonar.login=23e2ff1beac97da72a5edff2c7e3a72e33578244"
+            sh "mvn sonar:sonar -Dsonar.projectKey=SpringPipeline -Dsonar.host.url=http://52.143.7.186/prabhat-sonarqube -Dsonar.login=0144fc0a3377b5a9fd3802be5bdf248a9b0067ae"
                 }
      }
 stage('Building our image') { 
@@ -51,7 +51,7 @@ stage('Building our image') {
               {
                 sh("curl -LO https://storage.googleapis.com/kubernetes-release/release/\$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl")
                 sh("chmod +x ./kubectl")
-                sh("cat ./spring.yaml | sed s/1.0.0/${BUILD_NUMBER}/g | ./kubectl apply -f -")
+                sh("cat ./spring-1121.yaml | sed s/1.0.0/${BUILD_NUMBER}/g | ./kubectl create -f -")
                 echo "Application started on port: HTTP_PORT (http)"
     }
        }

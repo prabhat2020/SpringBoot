@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: raghav-1336430
+  labels:
+    app: springra
+spec:
+  replicas: 1
+  selector:
+       matchLabels:
+         app: springra
+  template:
+    metadata:
+      name: springra
+      labels:
+        app: springra
+    spec:
+      containers:
+      - name: springra
+        image: raghavgeek/testing:10
+        resources:
+          limits:
+            memory: 1Gi
+            cpu: "0.5"
+          requests:
+            memory: 256Mi
+            cpu: "0.25"
+  selector:
+    matchLabels:
+      app: springra
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: springra
+spec:
+  selector:
+    app: springra
+  ports:
+    - port: 8080
+  type: ClusterIP

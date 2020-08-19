@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: spring-1121485
-        image: prabhat2020/testing4:1
+        image: prabhat2020/testing4:latest
         resources:
           limits:
             memory: 1Gi
